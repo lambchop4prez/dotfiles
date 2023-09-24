@@ -1,9 +1,12 @@
-# This is Git's per-user configuration file.
 [user]
-# Please adapt and uncomment the following lines:
-	name = Timothy Cosgriff
-	email = timothy.cosgriff@gmail.com
+        name = Timothy Cosgriff
+        email = timothy.cosgriff@gmail.com
 [init]
-	defaultBranch = main
+        defaultBranch = main
 [pull]
-	rebase = false
+        rebase = false
+[push]
+        autoSetupRemote = true
+
+[safe]
+        directory = *

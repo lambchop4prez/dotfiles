@@ -1,0 +1,18 @@
+---
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+  ~/.gitconfig: .gitconfig
+  ~/.gitignore: .gitignore
+  ~/.zshrc: .zshrc
+
+# - create:
+#     - ~/downloads
+#     - ~/.vim/undo-history
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]

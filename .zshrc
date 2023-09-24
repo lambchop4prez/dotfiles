@@ -10,7 +10,7 @@ export PYENV_ROOT=$HOME/.pyenv
 
 ZSH_THEME="kolo"
 
-plugins=(git dotnet macos helm kubectl)
+plugins=(git dotnet macos)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -30,3 +30,8 @@ eval "$(direnv hook zsh)"
 # Pyenv setup
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+eval "$(rbenv init - zsh)"
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
