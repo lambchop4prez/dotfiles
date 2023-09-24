@@ -1,5 +1,9 @@
 ---
 - defaults:
+    brewfile:
+        stdin: true
+        stderr: true
+        stdout: true
     link:
       relink: true
 
