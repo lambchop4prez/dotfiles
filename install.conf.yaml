@@ -6,9 +6,9 @@
 - clean: ['~']
 
 - link:
-  ~/.gitconfig: .gitconfig
-  ~/.gitignore: .gitignore
-  ~/.zshrc: .zshrc
+    ~/.gitconfig: .gitconfig
+    ~/.gitignore: .gitignore
+    ~/.zshrc: .zshrc
 
 # - create:
 #     - ~/downloads
