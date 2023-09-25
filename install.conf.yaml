@@ -24,6 +24,7 @@
     ~/.gitconfig: .gitconfig
     ~/.gitignore: .gitignore
     ~/.zshrc: .zshrc
+    ~/.macos: .macos
 
 # - create:
 #     - ~/downloads
@@ -31,6 +32,7 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+  - ~/.macos
 
 - install-brew: true
 
