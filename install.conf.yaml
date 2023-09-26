@@ -18,6 +18,11 @@
     link:
       relink: true
 
+    shell:
+      stdin: true
+      sttdout: true
+      stderr: true
+
 - clean: ['~']
 
 - link:
@@ -25,6 +30,7 @@
     ~/.gitignore: .gitignore
     ~/.zshrc: .zshrc
     ~/.macos: .macos
+    ~/.editorconfig: .editorconfig
 
 # - create:
 #     - ~/downloads
