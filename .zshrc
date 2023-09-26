@@ -10,7 +10,7 @@ export PYENV_ROOT=$HOME/.pyenv
 
 ZSH_THEME="kolo"
 
-plugins=(git dotnet macos)
+plugins=(git direnv terraform kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -25,7 +25,7 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 command -v flux >/dev/null && . <(flux completion zsh)
 
 # Direnv allows for .envrc files to be loaded when you CD into them.
-eval "$(direnv hook zsh)"
+# eval "$(direnv hook zsh)"
 
 # Pyenv setup
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
