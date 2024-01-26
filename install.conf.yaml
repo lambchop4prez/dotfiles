@@ -26,6 +26,8 @@
 - clean: ['~']
 
 - link:
+    ~/.gitconfig-work: .gitconfig-work
+    ~/.gitconfig-default: .gitconfig-default
     ~/.gitconfig: .gitconfig
     ~/.gitignore: .gitignore
     ~/.zshrc: .zshrc

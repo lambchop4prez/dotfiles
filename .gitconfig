@@ -1,12 +1,17 @@
 [user]
-        name = Timothy Cosgriff
-        email = timothy.cosgriff@gmail.com
+  name = Timothy Cosgriff
+  email = lambchop4prez@users.noreply.github.com
 [init]
-        defaultBranch = main
+  defaultBranch = main
 [pull]
-        rebase = false
+  rebase = false
 [push]
-        autoSetupRemote = true
+  autoSetupRemote = true
 
 [safe]
-        directory = *
+  directory = *
+[fetch]
+  prune = true
+
+[includeIf "gitdir:~/Source/datameld/"]
+  path = .gitconfig-work

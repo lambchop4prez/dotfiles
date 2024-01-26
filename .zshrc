@@ -10,7 +10,7 @@ export PYENV_ROOT=$HOME/.pyenv
 
 ZSH_THEME="kolo"
 
-plugins=(git direnv terraform kubectl)
+plugins=(git direnv kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -21,7 +21,7 @@ alias gp='git pull --rebase'
 
 # Autocompletion
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/terraform terraform
+# complete -o nospace -C /usr/local/bin/terraform terraform
 command -v flux >/dev/null && . <(flux completion zsh)
 
 # Direnv allows for .envrc files to be loaded when you CD into them.
@@ -32,6 +32,9 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(rbenv init - zsh)"
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
