@@ -8,11 +8,11 @@ unsetopt nomatch
 export ZSH=$HOME/.oh-my-zsh
 export PYENV_ROOT=$HOME/.pyenv
 
-ZSH_THEME="kolo"
+# source antidote
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 
-plugins=(git direnv kubectl)
-
-source $ZSH/oh-my-zsh.sh
+# initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
+antidote load
 
 # Aliases
 alias gs='git status'
@@ -37,4 +37,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Load Angular CLI autocompletion.
-source <(ng completion script)
+# source <(ng completion script)
+
+autoload -Uz promptinit && promptinit && prompt pure

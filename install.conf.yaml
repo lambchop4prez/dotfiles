@@ -32,10 +32,16 @@
     ~/.zshrc: .zshrc
     ~/.macos: .macos
     ~/.editorconfig: .editorconfig
+    ~/.zsh_plugins.txt: .zsh_plugins.txt
 
 # - create:
 #     - ~/downloads
 #     - ~/.vim/undo-history
+
+- git:
+    '~/.antidote':
+      url: https://github.com/mattmc3/antidote.git
+      method: clone
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
