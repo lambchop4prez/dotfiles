@@ -10,6 +10,9 @@ zsh-users/zsh-completions
 romkatv/zsh-bench kind:path
 olets/zsh-abbr    kind:defer
 
+
+ohmyzsh/ohmyzsh path:plugins/asdf
+
 # or lighter-weight ones like zsh-utils
 belak/zsh-utils path:editor
 belak/zsh-utils path:history
