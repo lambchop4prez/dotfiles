@@ -49,7 +49,24 @@
   - [git submodule update --init --recursive, Installing submodules]
   # - ~/.macos
 
+- asdf:
+  - plugin: python
+    url: https://github.com/tuvistavie/asdf-python.git
+    global: 3.12.1
+    versions:
+      - 3.12.1
+  - plugin: nodejs
+    url: https://github.com/asdf-vm/asdf-nodejs.git
+    global: 20.11.1
+    versions:
+      - 20.11.1
+  - plugin: ruby
+    url: https://github.com/asdf-vm/asdf-ruby.git
+    global: 3.2.2
+    versions:
+      - 3.2.2
+
 - install-brew: true
 
-- brewfile:
-  - Brewfile
+# - brewfile:
+#   - Brewfile

@@ -2,7 +2,9 @@
 
 # comments are supported like this
 rupa/z
-zsh-users/zsh-completions
+
+# zsh-users/zsh-completions
+mattmc3/zephyr path:plugins/completion
 
 # empty lines are skipped
 
