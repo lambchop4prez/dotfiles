@@ -7,11 +7,9 @@
   rebase = false
 [push]
   autoSetupRemote = true
-
 [safe]
   directory = *
 [fetch]
   prune = true
-
 [includeIf "gitdir:~/Source/datameld/"]
   path = .gitconfig-work
