@@ -12,4 +12,4 @@
 [fetch]
   prune = true
 [includeIf "gitdir:~/Source/datameld/"]
-  path = .gitconfig-work
+  path = ~/Source/datameld/.gitconfing
