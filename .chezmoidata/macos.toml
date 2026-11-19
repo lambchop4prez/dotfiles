@@ -1,0 +1,91 @@
+# macOS preferences — direct port of nix-darwin `system.defaults` from
+# hosts/darwin/default.nix. Types matter: TOML booleans/ints render as
+# JSON true/false/1 so `defaults write -json` stores the same types
+# nix-darwin's writeDefaultsText did.
+#
+# Any edit here re-renders run_once_macos_defaults.sh, which makes
+# chezmoi re-run it once (that's the `once_` mechanism).
+
+[preferences."NSGlobalDomain"]
+AppleFontSmoothing = 1
+AppleKeyboardUIMode = 3
+AppleShowAllExtensions = true
+AppleInterfaceStyle = "Dark"
+AppleShowScrollBars = "Always"
+NSAutomaticCapitalizationEnabled = false
+NSAutomaticDashSubstitutionEnabled = false
+NSAutomaticInlinePredictionEnabled = false
+NSAutomaticPeriodSubstitutionEnabled = false
+NSAutomaticQuoteSubstitutionEnabled = false
+NSAutomaticSpellingCorrectionEnabled = false
+NSDocumentSaveNewDocumentsToCloud = false
+NSNavPanelExpandedStateForSaveMode = true
+NSNavPanelExpandedStateForSaveMode2 = true
+NSUseAnimatedFocusRing = false
+PMPrintingExpandedStateForPrint = true
+PMPrintingExpandedStateForPrint2 = true
+"com.apple.keyboard.fnState" = true
+
+[preferences."com.apple.LaunchServices"]
+LSQuarantine = false
+
+[preferences."com.apple.WindowManager"]
+EnableStandardClickToShowDesktop = false
+
+[preferences."com.apple.dock"]
+autohide = false
+orientation = "bottom"
+show-recents = false
+"wvous-tl-corner" = 3   # Application Windows
+"wvous-tr-corner" = 12  # Notification Center
+"wvous-bl-corner" = 2   # All Windows
+"wvous-br-corner" = 4   # Desktop
+
+[preferences."com.apple.finder"]
+_FXShowPosixPathInTitle = true
+_FXSortFoldersFirst = true
+AppleShowAllExtensions = true
+FXDefaultSearchScope = "SCcf"
+FXEnableExtensionChangeWarning = false
+FXPreferredViewStyle = "Nlsv"
+ShowStatusBar = true
+ShowPathbar = true
+
+# was CustomSystemPreferences in nix-darwin — freeform domain map, same idea:
+[preferences."com.apple.Safari"]
+UniversalSearchEnabled = false
+SuppressSearchSuggestions = true
+WebKitTabToLinksPreferenceKey = true
+"com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks" = true
+ShowFullURLInSmartSearchField = true
+HomePage = "about:blank"
+AutoOpenSafeDownloads = false
+"com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled" = true
+ShowFavoritesBar = false
+ShowSidebarInTopSites = false
+DebugSnapshotsUpdatePolicy = 2
+FindOnPageMatchesWordStartsOnly = false
+IncludeDevelopMenu = true
+WebKitDeveloperExtrasEnabledPreferenceKey = true
+"com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" = true
+WebKitDeveloperExtras = true
+WebContinuousSpellCheckingEnabled = true
+WebAutomaticSpellingCorrectionEnabled = false
+AutoFillFromAddressBook = false
+AutoFillPasswords = false
+AutoFillCreditCardData = false
+AutoFillMiscellaneousForms = false
+WarnAboutFraudulentWebsites = true
+WebKitPluginsEnabled = false
+"com.apple.Safari.ContentPageGroupIdentifier.WebKit2PluginsEnabled" = false
+WebKitJavaScriptCanOpenWindowsAutomatically = false
+"com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically" = false
+SendDoNotTrackHTTPHeader = true
+InstallExtensionUpdatesAutomatically = true
+
+[preferences."com.apple.mail"]
+AddressesIncludeNameOnPasteboard = false
+DisableInlineAttachmentViewing = true
+
+[preferences."com.apple.TimeMachine"]
+DoNotOfferNewDisksForBackup = true

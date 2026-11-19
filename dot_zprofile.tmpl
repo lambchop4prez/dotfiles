@@ -1,0 +1,4 @@
+# {{ .chezmoi.sourceFile }} — login shell env (kept out of .zshrc so
+# non-interactive tools and GUI login see it too).
+eval "($( /opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv 2>/dev/null))"
+eval "$(mise activate zsh)"

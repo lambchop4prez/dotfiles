@@ -1,0 +1,53 @@
+#!/bin/sh
+# Install Homebrew with a pinned, SHA-verified git clone — the manual method,
+# same as cloning nixpkgs at a fixed rev. Replaces both `curl | sh` and the
+# nix-homebrew layer.
+set -eu
+
+BREW_REF="7.0.13"
+BREW_SHA="bc63375ac3a4d6debb1ceb441ae6e22854f0909a"   # git ls-remote https://github.com/Homebrew/brew refs/tags/7.0.13
+
+if [ -x /opt/homebrew/bin/brew ] || [ -x /usr/local/bin/brew ]; then
+  exit 0   # already installed — nothing to do
+fi
+
+echo "==> Xcode Command Line Tools (required; skip if already installed)"
+xcode-select --install 2>/dev/null || true
+# If CLT is truly missing this blocks until installed; re-run apply afterwards.
+xcode-select -p >/dev/null || { echo "install CLT, then re-run: chezmoi apply" >&2; exit 1; }
+
+arch=$(uname -m)
+if [ "$arch" = "arm64" ]; then
+  prefix=/opt/homebrew
+else
+  prefix=/usr/local   # Tier 3 on Intel, same as official installer
+fi
+
+echo "==> git clone Homebrew/brew @ $BREW_REF -> $prefix"
+if [ ! -d "$prefix" ]; then
+  sudo mkdir -p "$prefix"
+  sudo chown $(id -un):admin "$prefix"
+fi
+chmod g+w "$prefix"
+if [ ! -d "$prefix/.git" ]; then
+  sudo /usr/bin/git clone --no-checkout --branch "$BREW_REF" \
+    https://github.com/Homebrew/brew "$prefix"
+  # verify we got exactly the commit we pinned
+  got=$(git -C "$prefix" rev-parse "refs/tags/$BREW_REF^{commit}")
+  [ "$got" = "$BREW_SHA" ] || { echo "CHECKSUM MISMATCH: brew @ $BREW_REF is $got, expected $BREW_SHA" >&2; exit 1; }
+  git -C "$prefix" checkout --force "$BREW_SHA"
+fi
+
+# ownership: match the official installer (user:admin, group-writable)
+sudo chown -R $(id -un):admin "$prefix"
+chmod -R g+w "$prefix"
+# Homebrew runs its own git operations and refuses 'dubious ownership'
+git config --global --add safe.directory "$prefix"
+
+# /etc/paths.d entry (official installer does this via sudo too)
+if [ ! -f /etc/paths.d/homebrew ] && [ -d /etc/paths.d ]; then
+  echo "$prefix/bin" | sudo tee /etc/paths.d/homebrew >/dev/null
+fi
+
+"$prefix/bin/brew" --version
+echo "==> Homebrew $BREW_REF installed"

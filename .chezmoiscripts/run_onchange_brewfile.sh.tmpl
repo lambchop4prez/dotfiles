@@ -1,0 +1,18 @@
+#!/bin/sh
+# Replaces home-manager/homebrew onActivation: trust third-party taps, then
+# `brew bundle` (install), `brew update` if stale, and prune removed entries
+# via --force. Runs on every apply whose ~/.Brewfile changed.
+set -eu
+export HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_ENV_HINTS=1
+brew=$(command -v brew || echo /opt/homebrew/bin/brew)
+
+# Trust every third-party tap declared in the Brewfile (Homebrew 6+).
+grep -E '^tap "' "$HOME/.Brewfile" | sed 's/^tap "//; s/"$//' | while read -r t; do
+  case "$t" in homebrew/*) continue ;; esac
+  $brew tap "$t" >/dev/null 2>&1 || true
+  $brew trust "$t" >/dev/null 2>&1 || true
+done
+
+$brew bundle --global --force --no-upgrade || {
+  echo "brew bundle had failures; continuing so dotfiles still apply" >&2; }
+$brew update

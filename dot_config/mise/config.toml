@@ -1,0 +1,10 @@
+[settings]
+env_shell_expand = true
+experimental = true
+
+[tools]
+"aqua:pnpm/pnpm" = "12.1.0"
+deno = "2.9.6"
+node = "24"
+python = ["3.13", "3.14"]
+rust = "1.97.1"

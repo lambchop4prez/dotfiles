@@ -1,0 +1,20 @@
+#!/bin/sh
+# Declarative macOS preferences — direct port of nix-darwin's system.defaults.
+# Source of truth: .chezmoidata/macos.toml (comments live there).
+# `defaults write -json` preserves types exactly like nix-darwin's generated
+# writeDefaults script. Kicking affected agents is what nix-darwin did too
+# (it restarts Dock/Finder via `killall` on change).
+set -eu
+pref() { defaults write -json "$1" "$2" "$3"; }
+{{ range $domain, $prefs := .preferences }}
+# ---- {{ $domain }} ----
+{{- range $key, $value := $prefs }}
+pref "{{ $domain }}" "{{ $key }}" '{{ $value | toJson }}'
+{{- end }}
+{{- end }}
+
+# nix-darwin's `reasonableTimeToWaitBeforeKillall` equivalent, minus the
+# 5-second timer: restart only agents whose prefs we actually touched.
+killall Dock 2>/dev/null || true
+killall Finder 2>/dev/null || true
+killall -HUP SystemUIServer 2>/dev/null || true

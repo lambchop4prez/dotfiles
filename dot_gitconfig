@@ -1,0 +1,26 @@
+# ~/.gitconfig — was home-manager programs.git.settings
+[user]
+	name = Tim
+	email = lambchop4prez@users.noreply.github.com
+[init]
+	defaultBranch = main
+[core]
+	editor = vim
+	compression = 9
+[pull]
+	rebase = false
+[push]
+	autoSetupRemote = true
+[fetch]
+	prune = true
+[branch]
+	sort = -committerdate
+[tag]
+	sort = -version:refname
+[column]
+	ui = auto
+[maintenance]
+	auto = true
+	strategy = incremental
+[commit]
+	verbose = false
